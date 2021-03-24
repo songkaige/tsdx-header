@@ -1,13 +1,14 @@
 import React, { useCallback } from 'react';
 import { LogoutOutlined, UserOutlined } from '@ant-design/icons';
 import { Avatar, Menu } from 'antd';
-// import { outCorpLogin } from '@/services/login';
 import { logout } from '../utils/utils';
 import HeaderDropdown from './HeaderDropdown';
 import styles from '../index.less';
 import AppConsts from '../lib/appconst';
 import { getCookie } from '../utils/cookie';
 import { HeaderArgs } from '../services/API';
+import { outCorpLogin } from '../services/service';
+import { getTranslate } from '../utils/translate';
 
 export interface GlobalHeaderRightProps {
   headerArgs: HeaderArgs;
@@ -16,12 +17,12 @@ export interface GlobalHeaderRightProps {
 /**
  * 退出登录
  */
-const loginOut = async (corporationUserId: string | undefined, accessToken: string, loginUrl: string) => {
+const loginOut = async (headerArgs: HeaderArgs, accessToken: string) => {
   console.log(accessToken);
-  if (corporationUserId) {
-    //  await outCorpLogin(accessToken)
+  if (headerArgs.corporationUserId) {
+    await outCorpLogin(headerArgs.idsServiceUrl, accessToken);
   }
-  logout(loginUrl);
+  logout(headerArgs.loginUrl);
 };
 
 const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ headerArgs }) => {
@@ -35,7 +36,7 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ headerArgs }) => {
     }) => {
       const { key } = event;
       if (key === 'logout') {
-        loginOut(headerArgs.corporationUserId, getCookie(AppConsts.accessToken), headerArgs.loginUrl);
+        loginOut(headerArgs, getCookie(AppConsts.accessToken));
         return;
       }
       if (key === 'center') {
@@ -49,11 +50,11 @@ const AvatarDropdown: React.FC<GlobalHeaderRightProps> = ({ headerArgs }) => {
     <Menu className={styles.menu} selectedKeys={[]} onClick={onMenuClick}>
       <Menu.Item key="center" disabled={headerArgs.disableProfile}>
         <UserOutlined />
-        个人中心
+        {getTranslate('profile')}
       </Menu.Item>
       <Menu.Item key="logout">
         <LogoutOutlined />
-        退出登录
+        {getTranslate('logout')}
       </Menu.Item>
     </Menu>
   );

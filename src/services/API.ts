@@ -3,7 +3,6 @@ export interface HeaderArgs {
     disableProfile: boolean;
     avatar: string;
     corpAppBaseUrl: string;
-    hostUrl: string;
     corporationUserId: string;
     loginUrl: string;
     idsServiceUrl: string;
