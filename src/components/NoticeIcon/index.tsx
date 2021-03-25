@@ -15,7 +15,6 @@ export interface NoticeIconData {
   title?: React.ReactNode;
   description?: React.ReactNode;
   datetime?: React.ReactNode;
-  extra?: React.ReactNode;
   style?: React.CSSProperties;
   key?: string | number;
   read?: boolean;
@@ -23,7 +22,6 @@ export interface NoticeIconData {
 
 export interface NoticeIconProps {
   count?: number;
-  bell?: React.ReactNode;
   className?: string;
   loading?: boolean;
   onClear?: (tabName: string, tabKey: string) => void;
@@ -33,8 +31,6 @@ export interface NoticeIconProps {
   style?: React.CSSProperties;
   onPopupVisibleChange?: (visible: boolean) => void;
   popupVisible?: boolean;
-  clearText?: string;
-  viewMoreText?: string;
   clearClose?: boolean;
   emptyImage?: string;
   children: React.ReactElement<NoticeIconTabProps>[];
@@ -48,8 +44,6 @@ const NoticeIcon: React.FC<NoticeIconProps> & {
       children,
       loading,
       onTabChange,
-      clearText,
-      viewMoreText,
     } = props;
     if (!children) {
       return null;
@@ -59,27 +53,25 @@ const NoticeIcon: React.FC<NoticeIconProps> & {
       if (!child || index === 1) {
         return;
       }
-      const { list, title, count, tabKey, showClear, showViewMore } = child.props;
+      const { list, title, count, tabKey, emptyText } = child.props;
       const len = list ? list.length : 0;
       const msgCount = count || count === 0 ? count : len;
-      const tabTitle: string = msgCount > 0 ? `${title} (${msgCount})` : title;
+      const tabTitle = msgCount > 0 ? (<>{title} <span style={{ color: "#ea6c75" }}>({msgCount})</span></>) : (<>{title}</>);
       panes.push(
         <TabPane tab={tabTitle} key={tabKey}>
           <NoticeList
-            {...child.props}
-            clearText={clearText}
-            viewMoreText={viewMoreText}
+            emptyText={emptyText}
             data={list}
-            showClear={showClear}
-            showViewMore={showViewMore}
             title={title}
+            tabKey={tabKey}
+            list={list}
           />
         </TabPane>,
       );
     });
 
     const OperationsSlot = {
-      right: <span style={{ color: "#5894c6" }}>{getTranslate('messageManagementCenter')}</span>,
+      right: <span style={{ color: "#5894c6", marginRight: "20px", cursor: "pointer" }}>{getTranslate('messageManagementCenter')}</span>,
     };
 
     const slot = React.useMemo(() => {
@@ -90,7 +82,7 @@ const NoticeIcon: React.FC<NoticeIconProps> & {
       );
     }, [['right']]);
     return (
-      <Spin spinning={loading} delay={300}>
+      <Spin spinning={loading} delay={300} className={styles.spin}>
         <Tabs className={styles.tabs} onChange={onTabChange} tabBarExtraContent={slot}>
           {panes}
         </Tabs>

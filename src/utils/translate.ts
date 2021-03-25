@@ -9,14 +9,16 @@ export function getTranslate(fiele: string) {
             'profile':'个人中心',
             'logout':'退出登录',
             'message':'站内信消息',
-            'messageManagementCenter':'消息管理中心'
+            'messageManagementCenter':'消息管理中心',
+            'messageTips':'您已查看所有站内信消息'
         },
         'en-US': {
             'enterHost': 'Enter Flexem Console',
             'profile':'Profile',
             'logout':'Logout',
             'message':'Message',
-            'messageManagementCenter':'Message management center'
+            'messageManagementCenter':'Message management center',
+            'messageTips':'You have viewed all inbound messages'
         }
     };
 

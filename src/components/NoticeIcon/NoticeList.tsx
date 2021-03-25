@@ -17,8 +17,6 @@ export interface NoticeIconTabProps {
   onClick?: (item: NoticeIconData) => void;
   onClear?: () => void;
   emptyText?: string;
-  clearText?: string;
-  viewMoreText?: string;
   list: NoticeIconData[];
   onViewMore?: (e: any) => void;
 }
@@ -30,7 +28,7 @@ const NoticeList: React.SFC<NoticeIconTabProps> = ({
     return (
       <div className={styles.notFound}>
         <img
-          src="https://gw.alipayobjects.com/zos/rmsportal/sAuJeJzSKbUmHfBQRzmZ.svg"
+          src="../../assets/defaultNotice.svg"
           alt="not found"
         />
         <div>{emptyText}</div>
@@ -69,12 +67,10 @@ const NoticeList: React.SFC<NoticeIconTabProps> = ({
                 title={
                   <div className={styles.title}>
                     {item.title}
-                    {/* <div className={styles.extra}>{item.extra}</div> */}
                   </div>
                 }
                 description={
                   <div>
-                    {/* <div className={styles.description}>{item.description}</div> */}
                     <div className={styles.datetime}>{item.datetime}</div>
                   </div>
                 }

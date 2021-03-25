@@ -36,7 +36,7 @@ const NoticeIconView: React.FC<IHeaderProps> = ({ headerArgs, onNoticeVisibleCha
                 count={noticeData.length}
                 list={noticeData}
                 title={getTranslate('message')}
-                emptyText="您已查看所有站内信消息"
+                emptyText={getTranslate('messageTips')}
                 showViewMore
             />
             <></>
