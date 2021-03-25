@@ -8,6 +8,7 @@ import { getCookie } from './utils/cookie';
 import AppConsts from './lib/appconst';
 import { getTranslate } from './utils/translate';
 import axios from 'axios';
+import NoticeIconView from './components/NoticeIconView';
 
 interface IHeaderProps {
   headerArgs: HeaderArgs;
@@ -29,6 +30,7 @@ export const HeaderRight: React.FunctionComponent<IHeaderProps> = ({ headerArgs 
           { getTranslate('enterHost')}
         </Button>
       )}
+      <NoticeIconView headerArgs={headerArgs} />
       <Avatar headerArgs={headerArgs} />
     </Space>
   );

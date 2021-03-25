@@ -1,0 +1,81 @@
+
+.popover {
+  position: relative;
+  width: 336px;
+}
+
+.noticeButton {
+  display: inline-block;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  :global {
+    .ant-badge {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      color: rgba(0, 0, 0, 0.85);
+      font-size: 14px;
+      font-variant: tabular-nums;
+      line-height: 1.5715;
+      list-style: none;
+      font-feature-settings: 'tnum', "tnum";
+      position: relative;
+      display: inline-block;
+      line-height: 1;
+  }
+
+    .ant-badge-count {
+      z-index: auto;
+      min-width: 20px;
+      height: 20px;
+      padding: 0 6px;
+      color: #fff;
+      font-weight: normal;
+      font-size: 12px;
+      line-height: 20px;
+      white-space: nowrap;
+      text-align: center;
+      background: #ff4d4f;
+      border-radius: 10px;
+      box-shadow: 0 0 0 1px #fff;
+    }
+
+    .ant-scroll-number-only {
+      position: relative;
+      display: inline-block;
+      height: 20px;
+      transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+    }
+
+    .ant-scroll-number-only>p.ant-scroll-number-only-unit {
+      height: 20px;
+      margin: 0;
+    }
+  }
+}
+
+.icon {
+  padding: 4px;
+  vertical-align: middle;
+}
+
+.badge {
+  font-size: 16px;
+}
+
+.tabs {
+  :global {
+    .ant-tabs-nav-list {
+      margin: auto;
+    }
+
+    .ant-tabs-nav-scroll {
+      text-align: center;
+    }
+
+    .ant-tabs-bar {
+      margin-bottom: 0;
+    }
+  }
+}

@@ -8,3 +8,10 @@ export interface HeaderArgs {
     idsServiceUrl: string;
     fullName: string;
 }
+
+export interface NoticeIconData{
+    avatar?: string | React.ReactNode;
+    title?: string | React.ReactNode;
+    description?: string | React.ReactNode;
+    datetime?: string | React.ReactNode;
+}
